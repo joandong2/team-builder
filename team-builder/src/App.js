@@ -36,7 +36,7 @@ function App() {
     };
 
     const updateMemberHandler = (id, updatedMember) => {
-        console.log(id);
+        //console.log(id);
         // console.log(updatedMember);
         // console.log(teamState);
         setEditState(false);
