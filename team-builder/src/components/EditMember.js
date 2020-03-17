@@ -1,34 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const TeamForm = (props) => {
-    const [formState, setFormState] = useState({
-        name: "",
-        email: "",
-        role: ""
-    });
+const EditMember = (props) => {
+    console.log(props);
+    const [member, setMember] = useState(props.currentMember);
 
     const changeHandler = (event) => {
-        console.log(event.target.value);
-        setFormState({
-            ...formState,
+        //console.log(event.target.value);
+        setMember({
+            ...member,
             [event.target.name]: event.target.value
         });
     };
 
     const formSubmitHandler = (event) => {
         event.preventDefault();
-        props.addPlayer({
-            ...formState
+        props.updateMember(member.name, {
+            name: member.name,
+            email: member.email,
+            role: member.role
         });
 
         /*I added this after class, 
     but it simply clears the user data and resets the form!*/
-        setFormState({
+        setMember({
             name: "",
             email: "",
-            role: ""
+            role: "backend"
         });
     };
+
+    useEffect(() => {
+        setMember(props.currentMember);
+    }, [props]);
 
     return (
         <form onSubmit={formSubmitHandler}>
@@ -36,7 +39,7 @@ const TeamForm = (props) => {
             <input
                 type="text"
                 name="name"
-                value={formState.title}
+                value={member.name}
                 onChange={changeHandler}
                 placeholder="Name"
             />
@@ -44,14 +47,14 @@ const TeamForm = (props) => {
             <input
                 type="email"
                 name="email"
-                value={formState.email}
+                value={member.email}
                 onChange={changeHandler}
                 placeholder="Email address"
             />
             <label htmlFor="">
                 <select
                     name="role"
-                    value={formState.role}
+                    value={member.role}
                     onChange={changeHandler}
                 >
                     <option value="backend">Backend Engineer</option>
@@ -59,9 +62,12 @@ const TeamForm = (props) => {
                     <option value="designer">Designer</option>
                 </select>
             </label>
-            <button type="submit">Create Note!</button>
+            <button type="submit">Edit Player!</button>
+            <button onClick={() => props.setEditState(false)} type="submit">
+                Cancel edit Player!
+            </button>
         </form>
     );
 };
 
-export default TeamForm;
+export default EditMember;
