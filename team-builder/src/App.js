@@ -9,6 +9,7 @@ function App() {
     const [teamState, setTeamState] = useState([]);
     const [editState, setEditState] = useState(false);
     const [currentMember, setCurrentMember] = useState({
+        id: "",
         name: "",
         email: "",
         role: ""
@@ -16,31 +17,37 @@ function App() {
 
     const addMemberHandler = (newMember) => {
         //console.log(newPlayer.name);
+        newMember.id = teamState.length + 1;
         setTeamState([...teamState, newMember]);
     };
 
+    //console.log(teamState);
+
     const editMemberHandler = (member) => {
-        //console.log(player);
+        //console.log(member);
         setEditState(true);
 
         setCurrentMember({
+            id: member.id,
             name: member.name,
             email: member.email,
             role: member.role
         });
     };
 
-    const updateMemberHandler = (name, updatedMember) => {
-        // console.log(name);
+    const updateMemberHandler = (id, updatedMember) => {
+        console.log(id);
         // console.log(updatedMember);
         // console.log(teamState);
         setEditState(false);
 
         setTeamState(
             teamState.map((member) =>
-                member.name === name ? updatedMember : member
+                member.id === id ? updatedMember : member
             )
         );
+
+        //console.log(setTeamState);
     };
 
     return (

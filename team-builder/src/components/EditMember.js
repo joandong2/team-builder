@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 const EditMember = (props) => {
-    console.log(props);
     const [member, setMember] = useState(props.currentMember);
+
+    console.log(member);
 
     const changeHandler = (event) => {
         //console.log(event.target.value);
@@ -14,7 +15,7 @@ const EditMember = (props) => {
 
     const formSubmitHandler = (event) => {
         event.preventDefault();
-        props.updateMember(member.name, {
+        props.updateMember(member.id, {
             name: member.name,
             email: member.email,
             role: member.role
@@ -29,9 +30,9 @@ const EditMember = (props) => {
         });
     };
 
-    useEffect(() => {
-        setMember(props.currentMember);
-    }, [props]);
+    // useEffect(() => {
+    //     setMember(props.currentMember);
+    // }, [props]);
 
     return (
         <form onSubmit={formSubmitHandler}>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const AddMember = (props) => {
     const [member, setMember] = useState({
+        id: "",
         name: "",
         email: "",
         role: "backend"
