@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
 const AddMember = (props) => {
     const [member, setMember] = useState({
@@ -33,25 +34,28 @@ const AddMember = (props) => {
     };
 
     return (
-        <form onSubmit={formSubmitHandler}>
-            <label htmlFor="name">Name:</label>
-            <input
-                type="text"
-                name="name"
-                value={member.name}
-                onChange={changeHandler}
-                placeholder="Name"
-            />
-            <label htmlFor="email">Email:</label>
-            <input
-                type="email"
-                name="email"
-                value={member.email}
-                onChange={changeHandler}
-                placeholder="Email address"
-            />
-            <label htmlFor="">
-                <select
+        <Form onSubmit={formSubmitHandler}>
+            <FormGroup>
+                <Input
+                    type="text"
+                    name="name"
+                    value={member.name}
+                    onChange={changeHandler}
+                    placeholder="Name"
+                />
+            </FormGroup>
+            <FormGroup>
+                <Input
+                    type="email"
+                    name="email"
+                    value={member.email}
+                    onChange={changeHandler}
+                    placeholder="Email address"
+                />
+            </FormGroup>
+            <FormGroup>
+                <Input
+                    type="select"
                     name="role"
                     value={member.role}
                     onChange={changeHandler}
@@ -59,10 +63,12 @@ const AddMember = (props) => {
                     <option value="backend">Backend Engineer</option>
                     <option value="frontend">Frontend Engineer</option>
                     <option value="designer">Designer</option>
-                </select>
-            </label>
-            <button type="submit">Add Member</button>
-        </form>
+                </Input>
+            </FormGroup>
+            <Button outline color="primary">
+                Add Member
+            </Button>
+        </Form>
     );
 };
 

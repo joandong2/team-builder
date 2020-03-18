@@ -1,24 +1,55 @@
 import React from "react";
+import { Button, Table } from "reactstrap";
+import "../styles/styles.css";
 
 const Team = (props) => {
+    const rolesRender = (param) => {
+        switch (param) {
+            case "backend":
+                return "Backend Engineer";
+            case "frontend":
+                return "Frontend Engineer";
+            case "designer":
+                return "Designer";
+            default:
+                return "No role..";
+        }
+    };
+
     return (
         <div className="note-list">
             <h4>Members</h4>
-            {props.team.map((member, i) => (
-                <div className="player" key={i}>
-                    <h2>{member.name}</h2>
-                    <p>{member.email}</p>
-                    <p>{member.role}</p>
-                    <button
-                        onClick={() => {
-                            props.editMember(member);
-                        }}
-                        className="button muted-button"
-                    >
-                        Edit
-                    </button>
-                </div>
-            ))}
+            <Table hover>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email Address</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.team.map((member, i) => (
+                        <tr key={i}>
+                            <td>{member.id}</td>
+                            <td>{member.name}</td>
+                            <td>{member.email}</td>
+                            <td>{rolesRender(member.role)}</td>
+                            <td>
+                                <button
+                                    onClick={() => {
+                                        props.editMember(member);
+                                    }}
+                                    className="button muted-button"
+                                >
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
         </div>
     );
 };

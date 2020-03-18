@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Team from "./components/Team.js";
 import AddMember from "./components/AddMember.js";
 import EditMember from "./components/EditMember.js";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col } from "reactstrap";
 import "./App.css";
 
 function App() {
@@ -51,25 +53,32 @@ function App() {
     };
 
     return (
-        <div className="wrapper">
-            <h1>My Notes</h1>
-            {editState ? (
-                <div>
-                    <h2>Edit user</h2>
-                    <EditMember
-                        editState={editState}
-                        setEditState={setEditState}
-                        currentMember={currentMember}
-                        updateMember={updateMemberHandler}
-                    />
-                </div>
-            ) : (
-                <div>
-                    <h2>Add user</h2>
-                    <AddMember addMember={addMemberHandler} />
-                </div>
-            )}
-            <Team team={teamState} editMember={editMemberHandler} />
+        <div className="appWrap">
+            <Container>
+                <Row>
+                    <Col md="4">
+                        {editState ? (
+                            <div>
+                                <h4>Edit user</h4>
+                                <EditMember
+                                    editState={editState}
+                                    setEditState={setEditState}
+                                    currentMember={currentMember}
+                                    updateMember={updateMemberHandler}
+                                />
+                            </div>
+                        ) : (
+                            <div>
+                                <h4>Add user</h4>
+                                <AddMember addMember={addMemberHandler} />
+                            </div>
+                        )}
+                    </Col>
+                    <Col md="8">
+                        <Team team={teamState} editMember={editMemberHandler} />
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 }

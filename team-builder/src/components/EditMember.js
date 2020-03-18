@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import "../styles/styles.css";
 
 const EditMember = (props) => {
     const [member, setMember] = useState(props.currentMember);
@@ -30,30 +32,33 @@ const EditMember = (props) => {
         });
     };
 
-    // useEffect(() => {
-    //     setMember(props.currentMember);
-    // }, [props]);
+    useEffect(() => {
+        setMember(props.currentMember);
+    }, [props]);
 
     return (
-        <form onSubmit={formSubmitHandler}>
-            <label htmlFor="name">Name:</label>
-            <input
-                type="text"
-                name="name"
-                value={member.name}
-                onChange={changeHandler}
-                placeholder="Name"
-            />
-            <label htmlFor="email">Email:</label>
-            <input
-                type="email"
-                name="email"
-                value={member.email}
-                onChange={changeHandler}
-                placeholder="Email address"
-            />
-            <label htmlFor="">
-                <select
+        <Form onSubmit={formSubmitHandler}>
+            <FormGroup>
+                <Input
+                    type="text"
+                    name="name"
+                    value={member.name}
+                    onChange={changeHandler}
+                    placeholder="Name"
+                />
+            </FormGroup>
+            <FormGroup>
+                <Input
+                    type="email"
+                    name="email"
+                    value={member.email}
+                    onChange={changeHandler}
+                    placeholder="Email address"
+                />
+            </FormGroup>
+            <FormGroup>
+                <Input
+                    type="select"
                     name="role"
                     value={member.role}
                     onChange={changeHandler}
@@ -61,13 +66,20 @@ const EditMember = (props) => {
                     <option value="backend">Backend Engineer</option>
                     <option value="frontend">Frontend Engineer</option>
                     <option value="designer">Designer</option>
-                </select>
-            </label>
-            <button type="submit">Edit Player!</button>
-            <button onClick={() => props.setEditState(false)} type="submit">
-                Cancel edit Player!
-            </button>
-        </form>
+                </Input>
+            </FormGroup>
+            <Button outline color="primary">
+                Edit Member
+            </Button>
+            <Button
+                outline
+                color="danger"
+                onClick={() => props.setEditState(false)}
+                type="submit"
+            >
+                Cancel
+            </Button>
+        </Form>
     );
 };
 
