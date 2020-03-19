@@ -37,14 +37,16 @@ const Team = (props) => {
                             <td>{member.email}</td>
                             <td>{rolesRender(member.role)}</td>
                             <td>
-                                <button
+                                <Button
+                                    outline
+                                    color="info"
                                     onClick={() => {
                                         props.editMember(member);
                                     }}
                                     className="button muted-button"
                                 >
                                     Edit
-                                </button>
+                                </Button>
                             </td>
                         </tr>
                     ))}

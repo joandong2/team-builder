@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Button, Form, FormGroup, Input } from "reactstrap";
 import "../styles/styles.css";
 
 const EditMember = (props) => {
@@ -18,13 +18,13 @@ const EditMember = (props) => {
     const formSubmitHandler = (event) => {
         event.preventDefault();
         props.updateMember(member.id, {
+            //id: member.id,
             name: member.name,
             email: member.email,
             role: member.role
         });
 
-        /*I added this after class, 
-    but it simply clears the user data and resets the form!*/
+        /*I added this after class, but it simply clears the user data and resets the form!*/
         setMember({
             name: "",
             email: "",
