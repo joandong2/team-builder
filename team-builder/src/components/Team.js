@@ -43,7 +43,6 @@ const Team = (props) => {
                                     onClick={() => {
                                         props.editMember(member);
                                     }}
-                                    className="button muted-button"
                                 >
                                     Edit
                                 </Button>

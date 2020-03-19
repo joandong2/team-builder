@@ -18,7 +18,7 @@ const EditMember = (props) => {
     const formSubmitHandler = (event) => {
         event.preventDefault();
         props.updateMember(member.id, {
-            //id: member.id,
+            id: member.id,
             name: member.name,
             email: member.email,
             role: member.role
