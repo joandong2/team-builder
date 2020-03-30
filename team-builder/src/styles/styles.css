@@ -1,0 +1,10 @@
+.appWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+form button {
+    margin-right: 10px;
+}
